@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
+
+    @if (User.IsInRole("Admin"))
+    {
+        <li class="navbar__item">
+        <a class="navbar__link" asp-area="Admin" asp-controller="Admin" asp-action="Dashboard">
+                <i class="bi bi-speedometer2"></i><span>Admin Panel</span>
+            </a>
+        </li>
+    }
+    @if (User.IsInRole("Doctor"))
+    {
+        <li class="navbar__item">
+        <a class="navbar__link" asp-area="Admin" asp-controller="" asp-action="Dashboard">
+                <i class="bi bi-speedometer2"></i><span>Admin Panel</span>
+            </a>
+        </li>
+    }
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="navbar__item">
+        <a id="manage" class="navbar__link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+            <i class="bi bi-person-circle"></i>
+            <span>Profile @UserManager.GetUserName(User)!</span>
+        </a>
+    </li>
+    <li class="navbar__item">
+        <form id="logoutForm" class="d-none" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post"></form>
+        <a href="#" id="logout" class="navbar__link" onclick="document.getElementById('logoutForm').submit();">
+            <i class="bi bi-box-arrow-left"></i><span>Logout</span>
+        </a>
+    </li>
+}
+else
+{
+    <li class="navbar__item">
+        <a class="navbar__link" id="login" asp-area="Identity" asp-page="/Account/Login">
+            <i class="bi bi-people"></i><span>Login</span>
+        </a>
+    </li>
+    <li class="navbar__item">
+        <a class="navbar__link" id="register" asp-area="Identity" asp-page="/Account/Register">
+            <i class="bi bi-person-add"></i><span>Register</span>
+        </a>
+    </li>
+}

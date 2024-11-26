@@ -1,10 +1,13 @@
-﻿namespace DoctorAppointment.Models
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace DoctorAppointment.Models
 {
-	public class Doctor
+	public class Doctor : IdentityUser
 	{
 		public int DoctorId { get; set; }
 		public string DoctorName { get; set; }
-		public string Specializtaion { get; set; }
+		public string Specialization { get; set; }
+
 
 	}
 }

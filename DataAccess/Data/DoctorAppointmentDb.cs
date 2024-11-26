@@ -16,5 +16,6 @@ namespace DoctorAppointment.DataAccess.Data
 		public DbSet<Users> Users { get; set; }
 		public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
+
 	}
 }

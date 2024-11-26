@@ -15,7 +15,7 @@
     @if (User.IsInRole("Doctor"))
     {
         <li class="navbar__item">
-        <a class="navbar__link" asp-area="Admin" asp-controller="" asp-action="Dashboard">
+        <a class="navbar__link" asp-area="Doctor" asp-controller="Doctor" asp-action="Index">
                 <i class="bi bi-speedometer2"></i><span>Doctor Panel</span>
             </a>
         </li>

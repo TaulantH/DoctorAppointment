@@ -3,12 +3,14 @@ using DoctorAppointment.DataAccess.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using DataAccess.Repository.IRepository;
+using DataAccess.Repository;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DoctorAppointmentDb>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DoctorAppointmentDb") ?? throw new InvalidOperationException("Connection string 'DoctorAppointmentDb' not found.")));
 builder.Services.AddTransient<IEmailSender, EmailSender>();
-
+builder.Services.AddScoped<IAdminRepository, AdminRepositoryEf>();
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<DoctorAppointmentDb>().AddDefaultTokenProviders();
 builder.Services.ConfigureApplicationCookie(options =>
 {

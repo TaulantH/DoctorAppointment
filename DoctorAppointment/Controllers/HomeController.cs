@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace DoctorAppointment.Controllers
 {
@@ -9,7 +9,11 @@ namespace DoctorAppointment.Controllers
 			return View();
 		}
 
-		public IActionResult Privacy()
+		public IActionResult About()
+		{
+			return View();
+		}
+		public IActionResult Contact()
 		{
 			return View();
 		}

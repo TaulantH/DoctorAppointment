@@ -1,13 +1,12 @@
 using DoctorAppointment.Utility;
-using DoctorAppointment.Data;
+using DoctorAppointment.DataAccess.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddDbContext<DoctorAppointmentDb>(options =>
-	options.UseSqlServer(builder.Configuration.GetConnectionString("DoctorAppointmentDb") ?? throw new InvalidOperationException("Connection string 'WebAppTestDb' not found.")));
+	options.UseSqlServer(builder.Configuration.GetConnectionString("DoctorAppointmentDb") ?? throw new InvalidOperationException("Connection string 'DoctorAppointmentDb' not found.")));
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<DoctorAppointmentDb>().AddDefaultTokenProviders();
@@ -19,10 +18,11 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 });
 
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+
 //builder.Services.AddKendo();
 // Add services to the container.
-builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
 
 // Register Kendo services
 var app = builder.Build();
@@ -40,12 +40,10 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
-
-
 app.Run();

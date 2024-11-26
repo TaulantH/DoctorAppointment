@@ -1,4 +1,4 @@
-﻿using DoctorAppointment.Data;
+﻿using DoctorAppointment.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DoctorAppointment.Controllers

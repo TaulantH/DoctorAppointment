@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Models;
 
-namespace DoctorAppointment.Data
+namespace DoctorAppointment.DataAccess.Data
 {
 	public class DoctorAppointmentDb : IdentityDbContext<IdentityUser>
 	{
